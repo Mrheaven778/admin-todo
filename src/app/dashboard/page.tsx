@@ -4,7 +4,11 @@ import { redirect } from "next/navigation";
 
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { getUsers } from "@/user/action/action-createUser";
-import Link from "next/link";
+import { DataView } from "@/interfaces/DataView";
+import Viewdata from "@/components/Viewdata";
+import ViewUser from "@/components/ViewUser";
+
+
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
@@ -15,42 +19,30 @@ export default async function DashboardPage() {
   const users = await getUsers();
   const userRoles = session.user?.roles ?? "No Roles";
 
+  const dataView: DataView[] = [
+    {
+      data: "Ver tareas",
+      description: "Podras ver las tareas pendientes que tienes y create nuevas tareas"
+    },
+    {
+      data: "Ver Perfil",
+      description: "Podras ver tu perfil"
+    }
+  ]
+
   return (
     <div className="grid gap-6 grid-cols-1 ">
-      <WidgetItem title="Usuario conectado S-Side">
-        <div className="flex flex-col">
-          <span>{session.user?.name}</span>
-          <span>{session.user?.image}</span>
-          <span>{session.user?.email}</span>
-
-          <div>{JSON.stringify(session)}</div>
-          {userRoles === "admin" && (
-            <div className="mt-6">
-              <h2 className="text-2xl font-semibold text-center mb-6">
-                Usuarios
-              </h2>
-              <hr />
-              {users.map((user) => (
-                <Link
-                  href={`/dashboard/user/${user.id}`}
-                  key={user.id}
-                  className="flex items-center justify-between  p-4 rounded-lg my-4 bg-gray-200 text-black font-medium hover:bg-gray-300 transition hover:shadow-lg hover:scale-105 cursor-pointer"
-                >
-                  <div className="flex flex-col ">
-                    <span className="font-bold text-lg">
-                      Nombre: <span className="uppercase">{user.name}</span>
-                    </span>
-                    <span className="mt-1">Email: {user.email}</span>
-                    <span className="mt-1">Roles: {user.roles}</span>
-                  </div>
-                  {/* <Link href={`#`} className="text-blue-700 hover:underline">
-                    Editar Rol
-                  </Link> */}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
+      <WidgetItem title="Usuario conectado Admin-Todo">
+        <section className="space-y-6">
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="text-xl md:text-3xl font-bold">Bien venido a admin todo </h1>
+            <hr className="h-1 w-52 bg-cyan-600 " />
+            <p className="text-lg font-semibold">Usuario : {session.user?.name}</p>
+          </div>
+          <Viewdata datas={dataView}/>
+        </section>
+        
+        <ViewUser users={users} roleUsuario={userRoles}/> 
       </WidgetItem>
     </div>
   );
