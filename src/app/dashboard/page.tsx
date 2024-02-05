@@ -35,7 +35,7 @@ export default async function DashboardPage() {
       <WidgetItem title="Usuario conectado Admin-Todo">
         <section className="space-y-6">
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-xl md:text-3xl font-bold">Bien venido a admin todo </h1>
+            <h1 className="text-xl md:text-3xl font-bold">Bienvenido a admin todo </h1>
             <hr className="h-1 w-52 bg-cyan-600 " />
             <p className="text-lg font-semibold">Usuario : {session.user?.name}</p>
           </div>
