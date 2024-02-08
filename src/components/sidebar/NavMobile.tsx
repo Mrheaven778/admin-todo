@@ -6,6 +6,7 @@ import {
   IoPersonOutline,
 } from "react-icons/io5";
 import { SidebarItem } from "./SidebarItem";
+import { LogoutButton } from "./LogoutButton";
 
 const menuItems = [
   {
@@ -13,14 +14,14 @@ const menuItems = [
     title: "Dashboard",
     path: "/dashboard",
   },
-  {
-    icon: <IoCheckboxOutline />,
-    title: "Rest TODOS",
-    path: "/dashboard/rest-todos",
-  },
+  // {
+  //   icon: <IoCheckboxOutline />,
+  //   title: "Rest TODOS",
+  //   path: "/dashboard/rest-todos",
+  // },
   {
     icon: <IoListOutline />,
-    title: "Server Actions",
+    title: "Ver tareas",
     path: "/dashboard/server-todos",
   },
   {
@@ -37,6 +38,7 @@ export default function NavMobile() {
         {menuItems.map((item) => (
           <SidebarItem key={item.path} {...item} />
         ))}
+        <LogoutButton />
       </ul>
     </div>
   );

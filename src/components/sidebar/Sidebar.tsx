@@ -19,14 +19,14 @@ const menuItems = [
     title: "Dashboard",
     path: "/dashboard",
   },
-  {
-    icon: <IoCheckboxOutline />,
-    title: "Rest TODOS",
-    path: "/dashboard/rest-todos",
-  },
+  // {
+  //   icon: <IoCheckboxOutline />,
+  //   title: "Rest TODOS",
+  //   path: "/dashboard/rest-todos",
+  // },
   {
     icon: <IoListOutline />,
-    title: "Server Actions",
+    title: "Ver tareas",
     path: "/dashboard/server-todos",
   },
   {
