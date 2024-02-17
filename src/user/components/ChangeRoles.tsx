@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { updateRole } from "../action/action-createUser";
 import { useRouter } from "next/navigation";
+import { Toaster, toast } from "sonner";
 interface Props {
   user: User;
 }
@@ -26,14 +27,7 @@ export default function ChangeRoles({ user }: Props) {
         Cambiar rol del Usuario:{" "}
         <span className="text-sky-600">{user.name}</span>
       </h2>
-      {rolChange && (
-        <div className="bg-green-500 p-4 rounded-lg mb-6 text-white text-center w-full">
-          <p>
-            Se ha cambiado el rol correctamente a{" "}
-            <span className="font-bold text-">{user.roles}</span>
-          </p>
-        </div>
-      )}
+      <Toaster />
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label
@@ -45,7 +39,7 @@ export default function ChangeRoles({ user }: Props) {
           <select
             id="rol"
             {...register("rol")}
-            
+
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           >
             <option value="user">User</option>
@@ -55,6 +49,7 @@ export default function ChangeRoles({ user }: Props) {
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gradient-to-r from-sky-600 to-cyan-500 focus:outline-none focus:bg-blue-600 transition-colors "
+          onClick={() => toast.success("Rol cambiado", { position: "top-center", })}
         >
           Cambiar Rol
         </button>

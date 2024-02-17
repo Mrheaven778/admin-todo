@@ -6,6 +6,7 @@ import { Todo } from "@prisma/client";
 import { deleteTodo, updateTodo } from "../helpers/todos";
 import { useRouter } from "next/navigation";
 import { CiSaveDown2, CiTrash } from "react-icons/ci";
+import { Toaster, toast } from "sonner";
 
 interface Props {
   todo: Todo;
@@ -46,10 +47,16 @@ export const TodoItemUser = ({ todo, toggleTodo }: Props) => {
     setTitle(title);
     setDescription(description);
     setDone(done);
+    toast.success("Cambios guardados",{
+      position: "top-center",
+    });
     router.refresh();
   };
   const onDelete = async () => {
     await deleteTodo(todoOptimistic.id);
+    toast.success("Tarea eliminada",{
+      position: "top-center",      
+    });
     router.refresh();
   };
 
@@ -63,6 +70,7 @@ export const TodoItemUser = ({ todo, toggleTodo }: Props) => {
     >
       <div className="flex flex-col md:flex-row justify-start  items-center gap-4 md:gap-24">
         <div>
+      <Toaster className="text-center bg-slate-900 text-white"/>
           <div className="flex flex-col">
             <span className="font-bold text-lg">{title}</span>
             {showInputs && (
@@ -89,19 +97,6 @@ export const TodoItemUser = ({ todo, toggleTodo }: Props) => {
           </div>
         </div>
         {showInputs && (
-          // <div className="flex flex-row w-full items-center justify-center sm:justify-start lg:justify-center md:mb-0 mb-4 ml-0 md:ml-8">
-          //   <label htmlFor="done" className="text-lg md:text-lg  ">
-          //     Tarea realizada:{" "}
-          //   </label>
-          //   <input
-          //     type="checkbox"
-          //     id="done"
-          //     checked={done}
-          //     onChange={(e) => setDone(e.target.checked)}
-          //     className="border p-2 my-2 rounded ml-2"
-          //   />
-
-          // </div>
           <div className=" m-auto flex flex-col items-center justify-center mb-4">
             <h3 className="text-xl font-bold mb-4">Tarea realizada:</h3>
             <label className="relative inline-flex items-center cursor-pointer">

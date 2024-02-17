@@ -25,9 +25,13 @@ export default async function DashboardPage() {
       description: "Podras ver las tareas pendientes que tienes y create nuevas tareas"
     },
     {
+      data: "Comprar Productos",
+      description: "Podras comprar productos en la tienda"
+    },
+    {
       data: "Ver Perfil",
       description: "Podras ver tu perfil"
-    }
+    },
   ]
 
   return (
@@ -39,10 +43,10 @@ export default async function DashboardPage() {
             <hr className="h-1 w-52 bg-cyan-600 " />
             <p className="text-lg font-semibold">Usuario : {session.user?.name}</p>
           </div>
-          <Viewdata datas={dataView}/>
+          <Viewdata datas={dataView} />
         </section>
-        
-        <ViewUser users={users} roleUsuario={userRoles}/> 
+
+        <ViewUser users={users} roleUsuario={userRoles} />
       </WidgetItem>
     </div>
   );

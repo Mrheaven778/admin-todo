@@ -1,12 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { IoTrashOutline } from "react-icons/io5";
-import * as todosApi from "@/todos/helpers/todos";
-// import { createTodo, deleteCompleted } from "@/todos/actions/todo-actions";
 import { useRouter } from "next/navigation";
 import { User } from "@prisma/client";
 import { createTodo } from "../actions/todo-actions";
+import { Toaster, toast } from "sonner";
 
 interface Props {
   user: User;
@@ -23,6 +21,9 @@ export const NewTodoUser = ({ user }: Props) => {
 
     // await createTodo(title, description, user.id);
     await createTodo(title, description, user.id);
+    toast.success("Tarea creada", {
+      position: "top-center",
+    });
     router.refresh();
 
     setDescription("");
@@ -32,6 +33,7 @@ export const NewTodoUser = ({ user }: Props) => {
   return (
     <form className="flex flex-col md:flex-row w-full" onSubmit={onSubmit}>
       <div className="flex flex-col md:flex-row md:gap-12 gap-3 items-center ml-0 sm:ml-2  w-full md:w-auto">
+        <Toaster />
         <input
           type="text"
           onChange={(e) => setTitle(e.target.value)}
@@ -46,17 +48,17 @@ export const NewTodoUser = ({ user }: Props) => {
           className="w-full md:w-6/12 -ml-10 pl-3 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-sky-500 transition-all"
           placeholder="Descripción"
         />
-      </div>
 
       <button
         type="submit"
-        className="flex items-center justify-center rounded  -ml-10 p-2 text-white  transition-all mt-2 md:mt-0 md:ml-2
+        className="flex items-center w-full md:w-auto justify-center rounded  -ml-10 p-2 text-white  transition-all mt-2 md:mt-0 md:ml-2
         bg-blue-500 = px-4 py-2  hover:bg-gradient-to-r from-sky-600 to-cyan-500 focus:outline-none focus:bg-blue-600"
       >
         <span className="font-semibold">Crear</span>
       </button>
+      </div>
 
-      <span className="flex flex-1"></span>
+
     </form>
   );
 };
