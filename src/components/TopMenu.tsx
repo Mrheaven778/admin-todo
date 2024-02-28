@@ -8,34 +8,18 @@ import {
   CiSquareRemove,
 } from "react-icons/ci";
 import NavMobile from "./sidebar/NavMobile";
+import { useStore } from "@/store/ui-sidebar";
 
 
 
 
 export const TopMenu = () => {
-  const [isNavVisible, setIsNavVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 1024 : false
-  );
-  const handleMenuClick = () => {
-    setIsNavVisible(!isNavVisible);
-  };
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    window.addEventListener("resize", handleResize);
+  const SidebarOpen = useStore((state) => state.open);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   return (
     <div
-      className={`sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5 ${
-      isNavVisible && isMobile ? " h-auto mb-72" : ""
-      }`}
+      className={`sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5 `}
     >
       <div className="px-6 flex items-center justify-between space-x-4">
         <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
@@ -45,15 +29,11 @@ export const TopMenu = () => {
         <div>
           <button
             className="w-12 h-16 -mr-2 border-r lg:hidden"
-            onClick={handleMenuClick}
+            onClick={SidebarOpen}
           >
-            {isNavVisible ? (
-              <CiSquareRemove size={30} />
-            ) : (
               <CiMenuBurger size={30} />
-            )}
           </button>
-          {isMobile && isNavVisible && <NavMobile />}
+          
         </div>
 
         <div className="flex space-x-2">

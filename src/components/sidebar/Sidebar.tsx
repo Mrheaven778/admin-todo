@@ -12,6 +12,7 @@ import { redirect } from "next/navigation";
 import { LogoutButton } from "./LogoutButton";
 import { selectImg } from "@/user/action/action-createUser";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { useStore } from "@/store/ui-sidebar";
 
 const menuItems = [
   {
@@ -37,6 +38,7 @@ const menuItems = [
 ];
 
 export const Sidebar = async () => {
+
   const session = await getServerSession(authOptions);
   if (!session) {
     redirect("/api/auth/signin");
