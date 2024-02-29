@@ -3,6 +3,7 @@ import React, { use } from "react";
 import {
   IoCalendarOutline,
   IoCheckboxOutline,
+  IoCropOutline,
   IoListOutline,
   IoPersonOutline,
 } from "react-icons/io5";
@@ -12,6 +13,8 @@ import { useStore } from "@/store/ui-sidebar";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { RxCross2 } from "react-icons/rx";
+
 
 const menuItems = [
   {
@@ -39,6 +42,7 @@ const menuItems = [
 export default function NavMobile() {
   const isSidebarOpen = useStore((state) => state.isOpen);
   const closeSidebar = useStore((state) => state.close);
+  
   const pathName = usePathname();
 
   return (
@@ -47,6 +51,10 @@ export default function NavMobile() {
       {isSidebarOpen && <div className='fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm' onClick={closeSidebar} />}
 
       <div className={clsx('fixed p-5 right-0 top-0 w-[300px] ms:w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300', isSidebarOpen ? 'translate-x-0' : 'translate-x-full')}>
+        <button className="mb-10" onClick={closeSidebar}>
+        <RxCross2 size={30} className='fixed right-5' />
+        </button>
+        
         {
           menuItems.map((item, index) => (
             <div key={index} className="flex items-center p-2">
