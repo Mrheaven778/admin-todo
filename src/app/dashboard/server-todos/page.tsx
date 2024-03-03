@@ -23,9 +23,9 @@ export default async function RestTodosPage() {
 
   return (
     <>
-      <span className="text-3xl mb-10">Server Actions (Alpha)</span>
+      <span className="text-3xl mb-10">Tus tareas ✍</span>
 
-      <div className="w-full px-3 mx-5 mb-5">
+      <div className="w-full px-3 mx-5 mb-5 mt-8">
         <NewTodo />
       </div>
 
