@@ -24,10 +24,10 @@ export default async function DashboardPage() {
       data: "Ver tareas",
       description: "Podras ver las tareas pendientes que tienes y create nuevas tareas"
     },
-    {
-      data: "Comprar Productos",
-      description: "Podras comprar productos en la tienda"
-    },
+    // {
+    //   data: "Comprar Productos",
+    //   description: "Podras comprar productos en la tienda"
+    // },
     {
       data: "Ver Perfil",
       description: "Podras ver tu perfil"
