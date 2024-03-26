@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -25,6 +26,9 @@ export default function ForgetPassword() {
             placeholder="usuario@gmail.com"
           />
         </div>
+        <Button className="w-full" type="submit">
+          Enviar
+        </Button>
       </form>
     </div>
   );

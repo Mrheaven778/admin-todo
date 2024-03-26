@@ -22,6 +22,7 @@ import { useRouter } from "next/navigation";
 import FormErros from "@/components/FormErros";
 import FormSucces from "@/components/FormSucces";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const lemon = Lemon({
   subsets: ["latin"],
@@ -117,6 +118,12 @@ export default function LoginForm() {
               Iniciar Sesión
             </Button>
           </form>
+          
+          <Button className="w-full font-normal mt-4" variant={"link"} size={"sm"} asChild>
+            <Link href='/auth/forget-password'>
+              Olvidates tu contraseña? Recuperarla
+            </Link>
+          </Button>
         </Form>
       </CardWrapper>
     </>
