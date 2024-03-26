@@ -36,7 +36,7 @@ function NewImg({ id }: Props) {
     input?.click();
   };
   return (
-    <div className="mt-12 flex items-center justify-center bg-gray-100">
+    <div className="mt-12 flex items-center justify-center ">
       <form
         action=""
         className="bg-white md:w-96 w-full p-6 rounded-lg shadow-md text-center"

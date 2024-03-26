@@ -23,14 +23,13 @@ export const newImg = async (id: string, urlImg: string, form: any) => {
     },
   });
 
-
   const file = form.get("file");
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  // const filePath = path.resolve(process.cwd(), "public", "img", urlImg);
+  const filePath = path.resolve(process.cwd(), "public", "img", urlImg);
   const filePathtest = path.resolve(process.cwd(), `./public/img/${urlImg}`);
-  console.log(filePathtest);
-  // writeFile(filePath, buffer);
+  // console.log(filePath);
+  writeFile(filePath, buffer);
   writeFile(filePathtest, buffer);
 
   return user;

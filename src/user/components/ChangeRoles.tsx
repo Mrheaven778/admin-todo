@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { updateRole } from "../action/action-createUser";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "sonner";
+import Image from "next/image";
 interface Props {
   user: User;
 }
@@ -23,10 +24,15 @@ export default function ChangeRoles({ user }: Props) {
   });
   return (
     <div className="bg-white p-6 shadow-md rounded-md">
-      <h2 className="text-2xl font-bold mb-4">
-        Cambiar rol del Usuario:{" "}
-        <span className="text-sky-600">{user.name}</span>
-      </h2>
+      <div className="flex flex-row justify-between items-center">
+        <h2 className="text-2xl font-bold mb-4">
+          Cambiar rol del Usuario:{" "}
+          <span className="text-sky-600">{user.name}</span>
+        </h2>
+        <Image src={`/img/${user.image}`} className="hidden sm:block rounded-full w-28 h-28" alt="Imagen del usuario" width={112}
+        height={112} />
+      </div>
+
       <Toaster />
       <form onSubmit={onSubmit}>
         <div className="mb-4">
@@ -39,7 +45,6 @@ export default function ChangeRoles({ user }: Props) {
           <select
             id="rol"
             {...register("rol")}
-
             className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           >
             <option value="user">User</option>
@@ -49,7 +54,9 @@ export default function ChangeRoles({ user }: Props) {
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-gradient-to-r from-sky-600 to-cyan-500 focus:outline-none focus:bg-blue-600 transition-colors "
-          onClick={() => toast.success("Rol cambiado", { position: "top-center", })}
+          onClick={() =>
+            toast.success("Rol cambiado", { position: "top-center" })
+          }
         >
           Cambiar Rol
         </button>
